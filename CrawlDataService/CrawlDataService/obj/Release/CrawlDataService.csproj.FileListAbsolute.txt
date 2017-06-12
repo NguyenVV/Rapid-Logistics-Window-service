@@ -7,3 +7,6 @@ C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlData
 C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.csproj.GenerateResource.Cache
 C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.exe
 C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.pdb
+C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Release\CrawlDataService.exe.config
+C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.exe
+C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.pdb
