@@ -17,7 +17,7 @@ namespace CrawlDataService
     public partial class CrawlDataService : ServiceBase
     {
         System.Timers.Timer timerCheck = new System.Timers.Timer();//create timer
-        string zipcode = string.Empty;
+        string listFields = string.Empty;
         string baseAddress = string.Empty;
         string procName = string.Empty;
         string apiFunctionPath = string.Empty;
@@ -31,13 +31,13 @@ namespace CrawlDataService
             InitializeComponent();
             try
             {
-                zipcode = ConfigurationManager.AppSettings["zipcode"];
+                listFields = ConfigurationManager.AppSettings["listFields"];
                 baseAddress = ConfigurationManager.AppSettings["baseAPIAddress"];
                 procName = ConfigurationManager.AppSettings["procSelectOneRowName"];
                 timeBetweenRuns = double.Parse(ConfigurationManager.AppSettings["timeBetweenRuns"]);
                 apiFunctionPath = ConfigurationManager.AppSettings["apiFunctionPath"];
-                limit = int.Parse(ConfigurationManager.AppSettings["limit"]);
-                apiUtils.InitWebClient(zipcode, baseAddress, procName, timeBetweenRuns);
+                limit = int.Parse(ConfigurationManager.AppSettings["limit_MSGXML"]);
+                apiUtils.InitWebClient(listFields, baseAddress, procName, timeBetweenRuns);
             }
             catch (Exception ex) { apiUtils.WriteLog(ex); }
         }
@@ -73,13 +73,12 @@ namespace CrawlDataService
             {
                 PostData dataPost = new PostData();
                 dataPost.Status = "overover";
-                
-                
-                DataTable dataToPost = cpn.GetAllDataNewWithStatusZero();
+
+                DataTable dataToPost = cpn.GetAllDataNewWithStatusZero(listFields);
                 if (dataToPost != null && dataToPost.Rows.Count > 0)
                 {
                     //JObject json = JObject.Parse(apiUtils.GetJson(dataToPost));
-                    dataPost.ShipmentNo = apiUtils.GetJsonFromDataTable(dataToPost);
+                    dataPost.ShipmentNo = apiUtils.GetJsonFromDataTable(dataToPost, limit);
                     HttpWebResponse response = (HttpWebResponse)apiUtils.CallToPostWebAPI(dataPost, apiFunctionPath);
 
                     if (response.StatusCode == HttpStatusCode.OK)
@@ -91,43 +90,22 @@ namespace CrawlDataService
                         // Read the content.  
                         string responseFromServer = reader.ReadToEnd();
                         // Display the content.  
-                        Console.WriteLine(responseFromServer);
-                        
-                        string res = string.Empty;
-                        
-                            // ... Read the string.
-                            //Task<string> result = content.ReadAsStringAsync();
-                            //res = result.Result;
-                            JObject json = JObject.Parse(responseFromServer);
+                        //Console.WriteLine(responseFromServer);
 
-                            if (json["code"].ToString() == "success")
-                            {
-                                apiUtils.WriteLog("\n******Post data success: "+DateTime.Now);
-                            //string idList = json["data"]["idE2"].ToString();
-                            //List<KeyValuePair<string, object>> paramList = new List<KeyValuePair<string, object>>();
-                            //KeyValuePair<string, object> idListToUpdate = new KeyValuePair<string, object>("@idE2", idList);
-                            //KeyValuePair<string, object> isUpdate = new KeyValuePair<string, object>("@update", 1);
-                            //if (idList.Contains(',')){
-                            //    string[] array = idList.Split(',');
-                            //    if (array.Length > 1)
-                            //    {
-                            //        string newIdList = "";
-                            //        foreach(string id in array)
-                            //        {
-                            //            if (newIdList == "")
-                            //                newIdList += "'" + id + "'";
-                            //            else
-                            //                newIdList += ",'" + id + "'";
-                            //        }
-                            //        idListToUpdate = new KeyValuePair<string, object>("@idE2", newIdList);
-                            //    }
-                            //}
-                            //paramList.Add(idListToUpdate);
-                            //paramList.Add(isUpdate);
+                        string res = string.Empty;
+
+                        // ... Read the string.
+                        //Task<string> result = content.ReadAsStringAsync();
+                        //res = result.Result;
+                        JObject json = JObject.Parse(responseFromServer);
+
+                        if (json["code"].ToString() == "success")
+                        {
+                            apiUtils.WriteLog("\n******Post data success: " + DateTime.Now);
                             StringBuilder ids = new StringBuilder();
                             StringBuilder shipmentIdList = new StringBuilder();
                             int totalRow = dataToPost.Rows.Count;
-                            for (int i=0;i< totalRow; i++)
+                            for (int i = 0; i < totalRow; i++)
                             {
                                 if (ids.Length == 0)
                                 {
@@ -139,19 +117,19 @@ namespace CrawlDataService
                                     ids.Append(",");
                                     ids.Append(dataToPost.Rows[i]["Id"]);
                                     shipmentIdList.Append(",");
-                                    shipmentIdList.Append( dataToPost.Rows[i]["ShipmentID"]);
+                                    shipmentIdList.Append(dataToPost.Rows[i]["ShipmentID"]);
                                 }
                             }
-                                int updateData = cpn.UpdateDataAfterSuccess(ids.ToString());
-                                if (updateData > 0)
-                                    apiUtils.WriteLog("\n******Success update "+ totalRow +"("+ updateData + ") rows to database. List id = " + ids+ "\nList ShipmentId:" + shipmentIdList.ToString());
-                                else
-                                    apiUtils.WriteLog("\n******Fail update " + totalRow + " rows to database list id = " + ids + "\nList ShipmentId:" + shipmentIdList.ToString());
-                            }
+                            int updateData = cpn.UpdateDataAfterSuccess(ids.ToString());
+                            if (updateData > 0)
+                                apiUtils.WriteLog("\n ******Success update " + totalRow + "(" + updateData + ") rows to database. List id = " + ids + Environment.NewLine+"\n List ShipmentId:" + shipmentIdList.ToString());
                             else
-                            {
-                                apiUtils.WriteLog("\n******Post data success but get error: " + json.Values("message").ToString());
-                            }
+                                apiUtils.WriteLog("\n ******Fail update " + totalRow + " rows to database list id = " + ids + Environment.NewLine + "\n List ShipmentId:" + shipmentIdList.ToString());
+                        }
+                        else
+                        {
+                            apiUtils.WriteLog("\n ******Post data success but get error: " + json.Values("message").ToString());
+                        }
                         // Clean up the streams.  
                         reader.Close();
                         dataStream.Close();

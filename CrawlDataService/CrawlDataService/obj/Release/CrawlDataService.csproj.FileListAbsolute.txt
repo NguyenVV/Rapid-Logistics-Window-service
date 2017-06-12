@@ -1,0 +1,9 @@
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Release\CrawlDataService.exe.config
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Release\CrawlDataService.exe
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Release\CrawlDataService.pdb
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Release\Newtonsoft.Json.dll
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Release\Newtonsoft.Json.xml
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.ProjectInstaller.resources
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.csproj.GenerateResource.Cache
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.exe
+C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.pdb

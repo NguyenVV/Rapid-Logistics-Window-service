@@ -12,13 +12,13 @@ namespace CrawlDataService
 {
     class WebAPIUtils
     {
-        string _zipcode = string.Empty;
+        string _listFields = string.Empty;
         string _baseAddress = string.Empty;
         string _procName = string.Empty;
         double _timeBetweenRuns = 10000;
-        public void InitWebClient(string zipcode, string baseAddress, string procName, double timeBetweenRuns)
+        public void InitWebClient(string listFields, string baseAddress, string procName, double timeBetweenRuns)
         {
-            _zipcode = zipcode;
+            _listFields = listFields;
             _baseAddress = baseAddress;
             _procName = procName;
             _timeBetweenRuns = timeBetweenRuns;
@@ -68,19 +68,27 @@ namespace CrawlDataService
             }
         }
 
-        public string GetJsonFromDataTable(DataTable dt)
+        public string GetJsonFromDataTable(DataTable dt, int limit = 1)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             List<Dictionary<string, object>> rows =
               new List<Dictionary<string, object>>();
             Dictionary<string, object> row = null;
+            serializer.MaxJsonLength = int.MaxValue;
 
             foreach (DataRow dr in dt.Rows)
             {
                 row = new Dictionary<string, object>();
                 foreach (DataColumn col in dt.Columns)
                 {
-                    row.Add(col.ColumnName.Trim(), dr[col]);
+                    if (col.ColumnName.Trim() == "MSGXML" && limit == 1)
+                    {
+                        row.Add(col.ColumnName.Trim(), "");
+                    }
+                    else
+                    {
+                        row.Add(col.ColumnName.Trim(), dr[col]);
+                    }
                 }
                 rows.Add(row);
             }

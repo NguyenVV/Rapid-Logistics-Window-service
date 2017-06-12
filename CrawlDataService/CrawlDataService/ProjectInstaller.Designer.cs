@@ -28,30 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.FukingCrawlDataProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
-            this.FukingCrawlDataInstaller1 = new System.ServiceProcess.ServiceInstaller();
+            this.CrawlDataProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
+            this.CrawlDataInstaller1 = new System.ServiceProcess.ServiceInstaller();
             // 
-            // FukingCrawlDataProcessInstaller1
+            // CrawlDataProcessInstaller1
             // 
-            this.FukingCrawlDataProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
-            this.FukingCrawlDataProcessInstaller1.Password = null;
-            this.FukingCrawlDataProcessInstaller1.Username = null;
+            this.CrawlDataProcessInstaller1.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
+            this.CrawlDataProcessInstaller1.Password = null;
+            this.CrawlDataProcessInstaller1.Username = null;
             // 
-            // FukingCrawlDataInstaller1
+            // CrawlDataInstaller1
             // 
-            this.FukingCrawlDataInstaller1.ServiceName = "FukingCrawlData";
+            this.CrawlDataInstaller1.DelayedAutoStart = true;
+            this.CrawlDataInstaller1.ServiceName = "Rapid Logistics Update Data";
+            this.CrawlDataInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
-            this.FukingCrawlDataProcessInstaller1,
-            this.FukingCrawlDataInstaller1});
+            this.CrawlDataProcessInstaller1,
+            this.CrawlDataInstaller1});
 
         }
 
         #endregion
 
-        private System.ServiceProcess.ServiceProcessInstaller FukingCrawlDataProcessInstaller1;
-        private System.ServiceProcess.ServiceInstaller FukingCrawlDataInstaller1;
+        private System.ServiceProcess.ServiceProcessInstaller CrawlDataProcessInstaller1;
+        private System.ServiceProcess.ServiceInstaller CrawlDataInstaller1;
     }
 }
