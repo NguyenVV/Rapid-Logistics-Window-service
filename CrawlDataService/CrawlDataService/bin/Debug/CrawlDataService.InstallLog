@@ -1,0 +1,39 @@
+﻿Installing assembly 'C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.InstallLog
+   assemblypath = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe assembly.
+Committing assembly 'C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.InstallLog
+   assemblypath = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe assembly.
+Remove InstallState file because there are no installers.
+Installing assembly 'C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.InstallLog
+   assemblypath = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe
+Installing service FukingCrawlData...
+Service FukingCrawlData has been successfully installed.
+Creating EventLog source FukingCrawlData in log Application...
+Committing assembly 'C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.InstallLog
+   assemblypath = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe
+Installing assembly 'C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.InstallLog
+   assemblypath = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe
+Installing service FukingCrawlData...
+Creating EventLog source FukingCrawlData in log Application...
+Rolling back assembly 'C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.InstallLog
+   assemblypath = C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe
+Restoring event log to previous state for source FukingCrawlData.
