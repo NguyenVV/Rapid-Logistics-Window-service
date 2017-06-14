@@ -18,7 +18,7 @@ namespace CrawlDataService.DataLayer
         /// <method>
         /// Get User Email By Firstname or Lastname and return DataTable
         /// </method>
-        public DataTable GetAllDataNewWithStatusZero(string listFieldsToSelect)
+        public DataTable GetAllDataNewWithStatusZero(int rowSelect, string listFieldsToSelect)
         {
             var str = listFieldsToSelect.Split(',');
             bool isContainId = false;
@@ -35,7 +35,7 @@ namespace CrawlDataService.DataLayer
                 listFieldsToSelect += ",Id";
             }
 
-            string query = string.Format("SELECT {0} from CPN_OutputMSG where MSGCODE is not null and TRANG_THAI =0",listFieldsToSelect);
+            string query = string.Format("SELECT TOP {0} {1} from CPN_OutputMSG where MSGCODE is not null and TRANG_THAI =0", rowSelect, listFieldsToSelect);
            
             return conn.executeSelectQuery(query);
         }

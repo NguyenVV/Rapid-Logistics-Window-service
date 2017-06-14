@@ -23,6 +23,7 @@ namespace CrawlDataService
         string apiFunctionPath = string.Empty;
         double timeBetweenRuns = 10000;
         int limit = 1;
+        int rowAmount = 1;
         CpnBUS cpn = new CpnBUS();
         WebAPIUtils apiUtils = new WebAPIUtils();
 
@@ -32,6 +33,7 @@ namespace CrawlDataService
             try
             {
                 listFields = ConfigurationManager.AppSettings["listFields"];
+                rowAmount = int.Parse(ConfigurationManager.AppSettings["rowAmount"]);
                 baseAddress = ConfigurationManager.AppSettings["baseAPIAddress"];
                 procName = ConfigurationManager.AppSettings["procSelectOneRowName"];
                 timeBetweenRuns = double.Parse(ConfigurationManager.AppSettings["timeBetweenRuns"]);
@@ -74,7 +76,7 @@ namespace CrawlDataService
                 PostData dataPost = new PostData();
                 dataPost.Status = "overover";
 
-                DataTable dataToPost = cpn.GetAllDataNewWithStatusZero(listFields);
+                DataTable dataToPost = cpn.GetAllDataNewWithStatusZero(rowAmount, listFields);
                 if (dataToPost != null && dataToPost.Rows.Count > 0)
                 {
                     //JObject json = JObject.Parse(apiUtils.GetJson(dataToPost));

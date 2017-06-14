@@ -15,9 +15,9 @@ namespace CrawlDataService.BusinessLayer
         {
             _cpnDao = new CpnDAO();
         }
-        public DataTable GetAllDataNewWithStatusZero(string listFieldsToSelect)
+        public DataTable GetAllDataNewWithStatusZero(int rowsAmount, string listFieldsToSelect)
         {
-            return _cpnDao.GetAllDataNewWithStatusZero(listFieldsToSelect);
+            return _cpnDao.GetAllDataNewWithStatusZero(rowsAmount, listFieldsToSelect);
         }
 
         public int UpdateDataAfterSuccess(string ids)
