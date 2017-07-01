@@ -115,7 +115,7 @@ namespace CrawlDataService
 
             try
             {
-                writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.txt", true);
+                writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile"+DateTime.Today.ToString("yyyyMMdd")+".txt", true);
                 writer.WriteLine("Exception at: " + DateTime.Now.ToString() + ": " + ex.Source.ToString().Trim() + "; " + ex.Message.ToString().Trim());
                 writer.Flush();
                 writer.Close();
@@ -129,7 +129,7 @@ namespace CrawlDataService
 
             try
             {
-                writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile.txt", true);
+                writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile" + DateTime.Today.ToString("yyyyMMdd") + ".txt", true);
                 writer.WriteLine();
                 writer.WriteLine(DateTime.Now.ToString() + ": " + message);
                 writer.Flush();
