@@ -45,7 +45,7 @@ namespace CrawlDataService
             dataStream.Write(byteArray, 0, byteArray.Length);
             // Close the Stream object.  
             dataStream.Close();
-           
+
 
             return request.GetResponse();
         }
@@ -79,8 +79,18 @@ namespace CrawlDataService
             foreach (DataRow dr in dt.Rows)
             {
                 row = new Dictionary<string, object>();
+                string sotk;
                 foreach (DataColumn col in dt.Columns)
                 {
+                    if (col.ColumnName.Trim() == "MSGXML")
+                    {
+                        string msgxml = dr[col].ToString();
+                        int start = msgxml.IndexOf("<DeclarationNo>") + "<DeclarationNo>".Length;
+                        int length = msgxml.IndexOf("</DeclarationNo>") - start;
+                        sotk = msgxml.Substring(start, length);
+                        dr["SOTK"] = sotk;
+                    }
+                    
                     if (col.ColumnName.Trim() == "MSGXML" && limit == 1)
                     {
                         row.Add(col.ColumnName.Trim(), "");
@@ -99,12 +109,12 @@ namespace CrawlDataService
         public string GetJsonFromList(PostData dataInput)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            
+
             Dictionary<string, object> row = new Dictionary<string, object>();
-            
+
             row.Add("ShipmentNo", dataInput.ShipmentNo);
             row.Add("Status", dataInput.Status);
-            
+
 
             return serializer.Serialize(row);
         }
@@ -115,7 +125,7 @@ namespace CrawlDataService
 
             try
             {
-                writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile"+DateTime.Today.ToString("yyyyMMdd")+".txt", true);
+                writer = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\LogFile" + DateTime.Today.ToString("yyyyMMdd") + ".txt", true);
                 writer.WriteLine("Exception at: " + DateTime.Now.ToString() + ": " + ex.Source.ToString().Trim() + "; " + ex.Message.ToString().Trim());
                 writer.Flush();
                 writer.Close();

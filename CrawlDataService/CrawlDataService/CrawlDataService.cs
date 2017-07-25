@@ -32,7 +32,7 @@ namespace CrawlDataService
             InitializeComponent();
             try
             {
-                listFields = ConfigurationManager.AppSettings["listFields"];
+                listFields = ConfigurationManager.AppSettings["listFields"].Replace(",MSGXML", "").Replace("MSGXML,", "").Replace(",SOTK", "").Replace("SOTK,", "");
                 rowAmount = int.Parse(ConfigurationManager.AppSettings["rowAmount"]);
                 baseAddress = ConfigurationManager.AppSettings["baseAPIAddress"];
                 procName = ConfigurationManager.AppSettings["procSelectOneRowName"];

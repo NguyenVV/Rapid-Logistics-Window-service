@@ -20,8 +20,9 @@ namespace CrawlDataService.DataLayer
         /// </method>
         public DataTable GetAllDataNewWithStatusZero(int rowSelect, string listFieldsToSelect)
         {
-            var str = listFieldsToSelect.Split(',');
+            var str = listFieldsToSelect.Replace(",MSGXML", "").Replace("MSGXML,", "").Replace(",SOTK", "").Replace("SOTK,", "").Split(',');
             bool isContainId = false;
+
             foreach (string x in str)
             {
                 if (x.Equals("Id", System.StringComparison.CurrentCultureIgnoreCase))
@@ -30,14 +31,16 @@ namespace CrawlDataService.DataLayer
                     break;
                 }
             }
+
             if (!isContainId)
             {
                 listFieldsToSelect += ",Id";
             }
 
-            string query = string.Format("SELECT TOP {0} {1} from CPN_OutputMSG where MSGCODE is not null and TRANG_THAI =0", rowSelect, listFieldsToSelect);
-           
-            return conn.executeSelectQuery(query);
+            string query = string.Format("SELECT TOP {0} {1},MSGXML,SOTK from CPN_OutputMSG where MSGCODE is not null and TRANG_THAI =0", rowSelect, listFieldsToSelect);
+           DataTable result = conn.executeSelectQuery(query);
+
+            return result;
         }
 
         public int UpdateStatusByListId(string ids)
