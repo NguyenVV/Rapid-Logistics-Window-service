@@ -13,7 +13,6 @@ C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.pdb
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\Newtonsoft.Json.dll
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\Newtonsoft.Json.xml
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.csprojResolveAssemblyReference.cache
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.ProjectInstaller.resources
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.csproj.GenerateResource.Cache
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.exe

@@ -24,5 +24,10 @@ namespace CrawlDataService.BusinessLayer
         {
             return _cpnDao.UpdateStatusByListId(ids);
         }
+
+        public void UpdateSotokhai(DataTable table)
+        {
+            _cpnDao.UpdateSotokhai(table);
+        }
     }
 }

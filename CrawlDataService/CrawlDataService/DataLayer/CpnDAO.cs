@@ -1,18 +1,22 @@
 ﻿
+using System;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace CrawlDataService.DataLayer
 {
     class CpnDAO
     {
         private SQLConnections conn;
-
+        SqlConnection newConn;
+        string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["dbConnectionStringRapidSolution"].ConnectionString;
         /// <constructor>
         /// Constructor UserDAO
         /// </constructor>
         public CpnDAO()
         {
             conn = new SQLConnections();
+            newConn = new SqlConnection(connStr);
         }
 
         /// <method>
@@ -48,6 +52,77 @@ namespace CrawlDataService.DataLayer
             string query = string.Format("update CPN_OutputMSG set TRANG_THAI=1 where ID in("+ids+")");
 
             return conn.executeUpdateQuery(query);
+        }
+
+        public void UpdateSotokhai(DataTable table)
+        {
+            if(table != null && table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    string query = string.Format("update [RapidSolution].[dbo].[ShipmentInfor] set DeclarationNo='{0}' where ShipmentId ='{1}'",row["sotk"],row["ShipmentID"]);
+                    ExecuteUpdateQuery(query);
+                }
+            }
+        }
+
+        private SqlConnection OpenNewConn()
+        {
+            if (newConn.State == ConnectionState.Closed || newConn.State ==
+                        ConnectionState.Broken)
+            {
+                newConn.Open();
+            }
+
+            return newConn;
+        }
+
+        /// <summary>
+        /// Close Connection
+        /// </summary>
+        private void CloseConnection()
+        {
+            if (newConn.State == ConnectionState.Open || newConn.State ==
+                        ConnectionState.Connecting)
+            {
+                newConn.Close();
+            }
+        }
+
+        private int ExecuteUpdateQuery(string _query)
+        {
+            using (SqlConnection connection = new SqlConnection(connStr))
+            {
+                if (connection.State == ConnectionState.Closed || connection.State ==
+                        ConnectionState.Broken)
+                {
+                    connection.Open();
+                }
+
+                using (var myAdapter = new SqlDataAdapter(_query, connection))
+                {
+                    try
+                    {
+                        SqlCommand myCommand = new SqlCommand();
+                        myCommand.Connection = connection;
+                        myCommand.CommandText = _query;
+                        myAdapter.UpdateCommand = myCommand;
+
+                        return myCommand.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.Write("Error - Connection.executeUpdateQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
+                        return 0;
+                    }
+                    finally
+                    {
+                        //CloseConnection();
+                    }
+                }
+            }
+                
+            
         }
     }
 }

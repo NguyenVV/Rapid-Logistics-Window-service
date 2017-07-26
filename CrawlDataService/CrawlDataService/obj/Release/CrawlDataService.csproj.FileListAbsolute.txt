@@ -16,3 +16,4 @@ C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Releas
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Release\Newtonsoft.Json.xml
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.ProjectInstaller.resources
 C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.csproj.GenerateResource.Cache
+C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Release\CrawlDataService.csprojResolveAssemblyReference.cache

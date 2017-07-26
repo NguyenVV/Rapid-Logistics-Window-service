@@ -77,6 +77,13 @@ namespace CrawlDataService
                 dataPost.Status = "overover";
 
                 DataTable dataToPost = cpn.GetAllDataNewWithStatusZero(rowAmount, listFields);
+                DataTable copyDataTable;
+                copyDataTable = dataToPost.Copy();
+                try
+                {
+                    cpn.UpdateSotokhai(copyDataTable);
+                }catch(Exception ex) { }
+
                 if (dataToPost != null && dataToPost.Rows.Count > 0)
                 {
                     //JObject json = JObject.Parse(apiUtils.GetJson(dataToPost));
