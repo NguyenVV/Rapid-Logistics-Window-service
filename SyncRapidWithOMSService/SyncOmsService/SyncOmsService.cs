@@ -113,7 +113,7 @@ namespace CrawlDataService
 
                         if (json["code"].ToString() == "success")
                         {
-                            apiUtils.WriteLog("\n******Post data success: " + DateTime.Now);
+                            apiUtils.WriteLog("\n******Post sync data success: " + DateTime.Now);
                             //StringBuilder ids = new StringBuilder();
                             StringBuilder shipmentIdList = new StringBuilder();
                             int totalRow = dataToPost.Rows.Count;
@@ -133,13 +133,13 @@ namespace CrawlDataService
                             int updateData = cpn.UpdateDataAfterSuccess(shipmentIdList.ToString(), tableType);
 
                             if (updateData > 0)
-                                apiUtils.WriteLog("\n ******Success update " + type + " " + totalRow + "(" + updateData + ") rows to database." + Environment.NewLine + "\nList ShipmentId:" + shipmentIdList.ToString());
+                                apiUtils.WriteLog("\n ******Success sync " + type + " " + totalRow + "(" + updateData + ") rows to database." + Environment.NewLine + "\nList ShipmentId:" + shipmentIdList.ToString());
                             else
-                                apiUtils.WriteLog("\n ******Fail update " + type + " " + totalRow + " rows to database." + Environment.NewLine + "\n List ShipmentId:" + shipmentIdList.ToString());
+                                apiUtils.WriteLog("\n ******Fail sync " + type + " " + totalRow + " rows to database." + Environment.NewLine + "\n List ShipmentId:" + shipmentIdList.ToString());
                         }
                         else
                         {
-                            apiUtils.WriteLog("\n ******Post data success but get error: " + json.Values("message").ToString());
+                            apiUtils.WriteLog("\n ******Post sync data success but get error: " + json.Values("message").ToString());
                         }
                         // Clean up the streams.  
                         reader.Close();
@@ -148,7 +148,7 @@ namespace CrawlDataService
                     }
                     else
                     {
-                        apiUtils.WriteLog("\n******Post data fail : " + "Error Code");
+                        apiUtils.WriteLog("\n******Post sync data fail : " + "Error Code");
                         //response.StatusCode + " : Message - " + response.ReasonPhrase);
                     }
                 }

@@ -40,9 +40,11 @@ namespace CrawlDataService.DataLayer
             {
                 listFieldsToSelect += ",Id";
             }
-
-            string query = string.Format("SELECT TOP {0} {1},MSGXML,SOTK from CPN_OutputMSG where MSGCODE is not null and TRANG_THAI =0", rowSelect, listFieldsToSelect);
-           DataTable result = conn.executeSelectQuery(query);
+            //string query = string.Format("SELECT TOP {0} {1},MSGXML,SOTK from CPN_OutputMSG where MSGCODE is not null and TRANG_THAI =0", rowSelect, listFieldsToSelect);
+            string query = string.Format(@"SELECT TOP {0} s.*, a.[Msgxml].value('(/Root/Declaration/DeclarationNo)[1]', 'VARCHAR(MAX)') AS 'SOTK',
+            a.[Msgxml].value('(/Root/ShipmentID)[1]', 'VARCHAR(MAX)') AS 'ShipmentNo'
+            FROM(SELECT CAST(Msgxml AS XML) AS xmlMsgxml, {1} FROM CPN_OutputMSG where MSGCODE is not null and TRANG_THAI = 0) s CROSS APPLY xmlMsgxml.nodes('/') a (Msgxml)", rowSelect, listFieldsToSelect);
+            DataTable result = conn.executeSelectQuery(query);
 
             return result;
         }

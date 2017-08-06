@@ -77,12 +77,12 @@ namespace CrawlDataService
                 dataPost.Status = "overover";
 
                 DataTable dataToPost = cpn.GetAllDataNewWithStatusZero(rowAmount, listFields);
-                DataTable copyDataTable;
-                copyDataTable = dataToPost.Copy();
-                try
-                {
-                    cpn.UpdateSotokhai(copyDataTable);
-                }catch(Exception ex) { }
+                //DataTable copyDataTable;
+                //copyDataTable = dataToPost.Copy();
+                //try
+                //{
+                //    cpn.UpdateSotokhai(copyDataTable);
+                //}catch(Exception ex) { }
 
                 if (dataToPost != null && dataToPost.Rows.Count > 0)
                 {
@@ -131,9 +131,9 @@ namespace CrawlDataService
                             }
                             int updateData = cpn.UpdateDataAfterSuccess(ids.ToString());
                             if (updateData > 0)
-                                apiUtils.WriteLog("\n ******Success update " + totalRow + "(" + updateData + ") rows to database. List id = " + ids + Environment.NewLine+"\n List ShipmentId:" + shipmentIdList.ToString());
+                                apiUtils.WriteLog("\n ******Success update " + totalRow + "(" + updateData + ") rows to database. List id = " + ids);
                             else
-                                apiUtils.WriteLog("\n ******Fail update " + totalRow + " rows to database list id = " + ids + Environment.NewLine + "\n List ShipmentId:" + shipmentIdList.ToString());
+                                apiUtils.WriteLog("\n ******Fail update " + totalRow + " rows to database list id = " + ids);
                         }
                         else
                         {

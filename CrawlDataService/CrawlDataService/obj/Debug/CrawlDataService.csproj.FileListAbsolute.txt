@@ -8,12 +8,3 @@ C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlData
 C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.exe
 C:\Users\Nguyen\Documents\Visual Studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.pdb
 C:\Users\Nguyen\documents\visual studio 2015\Projects\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.csprojResolveAssemblyReference.cache
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe.config
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.exe
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\CrawlDataService.pdb
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\Newtonsoft.Json.dll
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\bin\Debug\Newtonsoft.Json.xml
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.ProjectInstaller.resources
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.csproj.GenerateResource.Cache
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.exe
-C:\Projects Data\RapidWindowService\CrawlDataService\CrawlDataService\obj\Debug\CrawlDataService.pdb
