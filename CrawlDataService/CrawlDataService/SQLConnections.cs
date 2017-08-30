@@ -72,7 +72,7 @@ namespace CrawlDataService
             }
             catch (SqlException e)
             {
-                Console.Write("Error - Connection.executeSelectQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
+                WebAPIUtils.WriteLog("Error - Connection.executeSelectQueryWithListParam - Query: " + _query + " \nException: " + e.StackTrace.ToString());
                 return null;
             }
             finally
@@ -101,7 +101,7 @@ namespace CrawlDataService
             }
             catch (SqlException e)
             {
-                Console.Write("Error - Connection.executeSelectQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
+                WebAPIUtils.WriteLog("Error - Connection.executeSelectQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
                 return null;
             }
             finally
@@ -142,7 +142,7 @@ namespace CrawlDataService
             }
             catch (SqlException e)
             {
-                Console.Write("Error - Connection.executeProceduce - ProcName: " + procName + " \nException: " + e.StackTrace.ToString());
+                WebAPIUtils.WriteLog("Error - Connection.executeStoredProceduceSelectData - ProcName: " + procName + " \nException: " + e.StackTrace.ToString());
                 return null;
             }
 
@@ -217,7 +217,7 @@ namespace CrawlDataService
             }
             catch (SqlException e)
             {
-                Console.Write("Error - Connection.executeNonQuery \nException: " + e.StackTrace.ToString());
+                WebAPIUtils.WriteLog("Error - Connection.executeStoredProceduce \nException: " + e.StackTrace.ToString());
             }
 
             return false;
@@ -241,7 +241,7 @@ namespace CrawlDataService
             }
             catch (SqlException e)
             {
-                Console.Write("Error - Connection.executeInsertQuery - Query: " + _query + " \nException: \n" + e.StackTrace.ToString());
+                WebAPIUtils.WriteLog("Error - Connection.executeInsertQuery - Query: " + _query + " \nException: \n" + e.StackTrace.ToString());
                 return false;
             }
             finally
@@ -270,7 +270,7 @@ namespace CrawlDataService
             }
             catch (SqlException e)
             {
-                Console.Write("Error - Connection.executeUpdateQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
+                WebAPIUtils.WriteLog("Error - Connection.executeUpdateQuery - Query: " + _query + " \nException: " + e.StackTrace.ToString());
                 return 0;
             }
             finally

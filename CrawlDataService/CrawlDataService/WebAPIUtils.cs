@@ -79,27 +79,19 @@ namespace CrawlDataService
             foreach (DataRow dr in dt.Rows)
             {
                 row = new Dictionary<string, object>();
-                //string sotk;
+                string sotk;
                 foreach (DataColumn col in dt.Columns)
                 {
-                    //if (col.ColumnName.Trim() == "MSGXML")
-                    //{
-                    //    string msgxml = dr[col].ToString();
-                    //    int start = msgxml.IndexOf("<DeclarationNo>") + "<DeclarationNo>".Length;
-                    //    int length = msgxml.IndexOf("</DeclarationNo>") - start;
-                    //    sotk = msgxml.Substring(start, length);
-                    //    dr["SOTK"] = sotk;
-                    //}
+                    if (col.ColumnName.Trim() == "MSGXML")
+                    {
+                        string msgxml = dr[col].ToString();
+                        int start = msgxml.IndexOf("<DeclarationNo>") + "<DeclarationNo>".Length;
+                        int length = msgxml.IndexOf("</DeclarationNo>") - start;
+                        sotk = msgxml.Substring(start, length);
+                        dr["SOTK"] = sotk;
+                    }
                     if (col.ColumnName.Trim() != "xmlMsgxml")
                     {
-                        //if (col.ColumnName.Trim() == "MSGXML" && limit == 1)
-                        //{
-                        //    row.Add(col.ColumnName.Trim(), "");
-                        //}
-                        //else
-                        //{
-                        //    row.Add(col.ColumnName.Trim(), dr[col]);
-                        //}
                         row.Add(col.ColumnName.Trim(), dr[col]);
                     }
                 }
@@ -122,7 +114,7 @@ namespace CrawlDataService
             return serializer.Serialize(row);
         }
 
-        public void WriteLog(Exception ex)
+        public static void WriteLog(Exception ex)
         {
             StreamWriter writer = null;
 
@@ -136,7 +128,7 @@ namespace CrawlDataService
             catch { }
         }
 
-        public void WriteLog(string message)
+        public static void WriteLog(string message)
         {
             StreamWriter writer = null;
 

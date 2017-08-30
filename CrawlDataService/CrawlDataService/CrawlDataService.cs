@@ -41,7 +41,7 @@ namespace CrawlDataService
                 limit = int.Parse(ConfigurationManager.AppSettings["limit_MSGXML"]);
                 apiUtils.InitWebClient(listFields, baseAddress, procName, timeBetweenRuns);
             }
-            catch (Exception ex) { apiUtils.WriteLog(ex); }
+            catch (Exception ex) { WebAPIUtils.WriteLog(ex); }
         }
         protected override void OnStart(string[] args)
         {
@@ -75,7 +75,6 @@ namespace CrawlDataService
             {
                 PostData dataPost = new PostData();
                 dataPost.Status = "overover";
-
                 DataTable dataToPost = cpn.GetAllDataNewWithStatusZero(rowAmount, listFields);
                 //DataTable copyDataTable;
                 //copyDataTable = dataToPost.Copy();
@@ -86,8 +85,10 @@ namespace CrawlDataService
 
                 if (dataToPost != null && dataToPost.Rows.Count > 0)
                 {
+                    DataTable copyDataTable;
+                    copyDataTable = dataToPost.Copy();
                     //JObject json = JObject.Parse(apiUtils.GetJson(dataToPost));
-                    dataPost.ShipmentNo = apiUtils.GetJsonFromDataTable(dataToPost, limit);
+                    dataPost.ShipmentNo = apiUtils.GetJsonFromDataTable(copyDataTable, limit);
                     HttpWebResponse response = (HttpWebResponse)apiUtils.CallToPostWebAPI(dataPost, apiFunctionPath);
 
                     if (response.StatusCode == HttpStatusCode.OK)
@@ -107,37 +108,36 @@ namespace CrawlDataService
                         //Task<string> result = content.ReadAsStringAsync();
                         //res = result.Result;
                         JObject json = JObject.Parse(responseFromServer);
-
                         if (json["code"].ToString() == "success")
                         {
-                            apiUtils.WriteLog("\n******Post data success: " + DateTime.Now);
+                            WebAPIUtils.WriteLog("\n******Post data success: " + DateTime.Now);
                             StringBuilder ids = new StringBuilder();
                             StringBuilder shipmentIdList = new StringBuilder();
-                            int totalRow = dataToPost.Rows.Count;
+                            int totalRow = copyDataTable.Rows.Count;
                             for (int i = 0; i < totalRow; i++)
                             {
                                 if (ids.Length == 0)
                                 {
-                                    ids.Append(dataToPost.Rows[i]["Id"]);
-                                    shipmentIdList.Append(dataToPost.Rows[i]["ShipmentID"]);
+                                    ids.Append(copyDataTable.Rows[i]["Id"]);
+                                    shipmentIdList.Append(copyDataTable.Rows[i]["ShipmentID"]);
                                 }
                                 else
                                 {
                                     ids.Append(",");
-                                    ids.Append(dataToPost.Rows[i]["Id"]);
+                                    ids.Append(copyDataTable.Rows[i]["Id"]);
                                     shipmentIdList.Append(",");
-                                    shipmentIdList.Append(dataToPost.Rows[i]["ShipmentID"]);
+                                    shipmentIdList.Append(copyDataTable.Rows[i]["ShipmentID"]);
                                 }
                             }
                             int updateData = cpn.UpdateDataAfterSuccess(ids.ToString());
                             if (updateData > 0)
-                                apiUtils.WriteLog("\n ******Success update " + totalRow + "(" + updateData + ") rows to database. List id = " + ids);
+                                WebAPIUtils.WriteLog("\n ******Success update " + totalRow + "(" + updateData + ") rows to database. List id = " + ids);
                             else
-                                apiUtils.WriteLog("\n ******Fail update " + totalRow + " rows to database list id = " + ids);
+                                WebAPIUtils.WriteLog("\n ******Fail update " + totalRow + " rows to database list id = " + ids);
                         }
                         else
                         {
-                            apiUtils.WriteLog("\n ******Post data success but get error: " + json.Values("message").ToString());
+                            WebAPIUtils.WriteLog("\n ******Post data success but get error: " + json.Values("message").ToString());
                         }
                         // Clean up the streams.  
                         reader.Close();
@@ -146,14 +146,14 @@ namespace CrawlDataService
                     }
                     else
                     {
-                        apiUtils.WriteLog("\n******Post data fail : " + "Error Code");
+                        WebAPIUtils.WriteLog("\n******Post data fail : " + "Error Code");
                         //response.StatusCode + " : Message - " + response.ReasonPhrase);
                     }
                 }
             }
             catch (Exception ex)
             {
-                apiUtils.WriteLog(ex);
+                WebAPIUtils.WriteLog(ex);
             }
         }
     }
