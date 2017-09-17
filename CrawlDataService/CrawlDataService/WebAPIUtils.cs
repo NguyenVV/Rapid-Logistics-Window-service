@@ -92,7 +92,14 @@ namespace CrawlDataService
                     }
                     if (col.ColumnName.Trim() != "xmlMsgxml")
                     {
-                        row.Add(col.ColumnName.Trim(), dr[col]);
+                        if (col.ColumnName.Trim() == "MSGXML" && limit == 1)
+                        {
+                            row.Add(col.ColumnName.Trim(), "");
+                        }
+                        else
+                        {
+                            row.Add(col.ColumnName.Trim(), dr[col]);
+                        }
                     }
                 }
                 rows.Add(row);
